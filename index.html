@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>INDEX</title>
+	<link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+	<div class="container">
+		<div class="wallpaper"></div>
+		<h1>Time Left </h1>
+		<div class="time">
+			<span class="hour">12</span>
+			<span class="min">12</span>
+			<span class="sec">12</span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var d = new Date();
+		var day = 0;
+		var h = d.getHours();
+		if (h>12)
+			h = h-12;
+		var hour = 11 - h;
+		var min = 59 - d.getMinutes();
+		var sec = 60 - d.getSeconds();
+		var h = document.querySelector(".hour");
+		var m = document.querySelector(".min");
+		var s = document.querySelector(".sec");
+
+		if(hour<10)
+			hour = '0'+hour;
+		if(min<10)
+			min = '0'+min;
+		if(sec<10)
+			sec = '0'+sec;
+		h.innerHTML = hour;
+		m.innerHTML = min;
+		s.innerHTML = sec;
+		var a = setInterval(function(){
+			sec = Number(sec) - 1;
+			hour = Number(hour);
+			min = Number(min);
+			if(sec==-1)
+			{
+				min--;
+				sec = 59;
+			}
+			if(min==-1){
+				hour--;
+			}
+			if(hour==-1){
+				clearInterval(a);
+			}
+
+
+			if(hour<10)
+				hour = '0'+hour;
+			if(min<10)
+				min = '0'+min;
+			if(sec<10)
+				sec = '0'+sec;
+			h.innerHTML = hour;
+			m.innerHTML = min;
+			s.innerHTML = sec;
+
+		},1000);
+	</script>
+</body>
+</html>
